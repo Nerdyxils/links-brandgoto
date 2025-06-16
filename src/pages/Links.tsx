@@ -16,7 +16,7 @@ const Links: React.FC = () => {
     },
     {
       title: 'LinkedIn',
-      url: 'https://linkedin.com/company/brandgoto',
+      url: 'hhttps://www.linkedin.com/company/brandgoto/',
       icon: '💼'
     }
   ];
