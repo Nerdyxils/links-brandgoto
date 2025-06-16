@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { QRCodeSVG } from 'qrcode.react';
-import { Link } from 'react-router-dom';
 
 const Links: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const [links, setLinks] = useState([
+  const links = [
     {
       title: 'Main Website',
       url: 'https://brandgoto.com/ca',
@@ -20,7 +19,7 @@ const Links: React.FC = () => {
       url: 'https://linkedin.com/company/brandgoto',
       icon: '💼'
     }
-  ]);
+  ];
 
   useEffect(() => {
     // Simulate loading time for preloader
