@@ -46,7 +46,7 @@ const QRLanding: React.FC = () => {
 
   const ctaButtons: CTAButton[] = [
     {
-      href: '/',
+      href: 'https://brandgoto.com',
       title: 'Go to Main Website',
       description: 'See our portfolio & services',
       icon: '🏠',
