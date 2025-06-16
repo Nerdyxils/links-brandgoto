@@ -1,0 +1,278 @@
+.qr-landing {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #0F1419 0%, #1a2332 100%);
+  color: white;
+  line-height: 1.6;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+.qr-container {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 20px;
+  min-height: 100vh;
+}
+
+/* Header */
+.qr-header {
+  text-align: center;
+  padding: 20px 0 30px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.qr-logo {
+  width: 80px;
+  height: auto;
+  margin: 5px auto;
+  filter: brightness(1.1);
+}
+
+.qr-welcome-text {
+  font-size: 16px;
+  color: #CFF8FF;
+  margin: 0 auto;
+}
+
+.qr-brand-title {
+  font-size: 48px;
+  font-weight: 700;
+  background: linear-gradient(45deg, #FF6B35, #20B2AA);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-family: 'Poppins', sans-serif;
+  margin: 0 auto;
+}
+
+.qr-tagline {
+  font-size: 14px;
+  color: #CFF8FF;
+  opacity: 0.9;
+  margin: 0 auto;
+}
+
+/* Trust Badges */
+.qr-trust-badges {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+  gap: 15px;
+  opacity: 0.7;
+}
+
+.qr-trust-badge {
+  font-size: 12px;
+  color: #94A3B8;
+  display: flex;
+  align-items: center;
+}
+
+.qr-trust-badge i {
+  margin-right: 4px;
+  color: #20B2AA;
+}
+
+/* Main CTAs */
+.qr-main-ctas {
+  margin-bottom: 35px;
+}
+
+.qr-section-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #F1F5F9;
+}
+
+.qr-cta-button {
+  display: block;
+  width: 100%;
+  padding: 16px 24px;
+  margin-bottom: 12px;
+  background: linear-gradient(135deg, #FF6B35 0%, #ff8c5a 100%);
+  color: white;
+  text-decoration: none;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 16px;
+  text-align: center;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.qr-cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
+  color: white;
+  text-decoration: none;
+}
+
+.qr-cta-button.secondary {
+  background: linear-gradient(135deg, #20B2AA 0%, #4fd1c7 100%);
+}
+
+.qr-cta-button.secondary:hover {
+  box-shadow: 0 8px 25px rgba(32, 178, 170, 0.4);
+}
+
+.qr-cta-button.tertiary {
+  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.qr-cta-button.tertiary:hover {
+  background: linear-gradient(135deg, #334155 0%, #475569 100%);
+  box-shadow: 0 8px 25px rgba(255, 255, 255, 0.1);
+}
+
+.qr-cta-icon {
+  margin-right: 8px;
+  font-size: 18px;
+}
+
+.qr-cta-description {
+  font-size: 12px;
+  opacity: 0.9;
+  margin-top: 4px;
+  font-weight: 400;
+}
+
+/* Social Links */
+.qr-social-section {
+  margin-top: 35px;
+  padding-top: 25px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.qr-social-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  text-align: center;
+  color: #F1F5F9;
+}
+
+.qr-social-links {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 25px;
+}
+
+.qr-social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px;
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.qr-social-link:hover {
+  background: rgba(255,255,255,0.1);
+  transform: translateY(-1px);
+  color: white;
+  text-decoration: none;
+}
+
+.qr-social-link i {
+  margin-right: 8px;
+  font-size: 16px;
+}
+
+/* Contact Info */
+.qr-contact-info {
+  text-align: center;
+  padding: 10px 0;
+}
+
+.qr-contact-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #94A3B8;
+}
+
+.qr-contact-item i {
+  margin-right: 8px;
+  width: 16px;
+}
+
+.qr-contact-item a {
+  color: #CFF8FF;
+  text-decoration: none;
+}
+
+.qr-contact-item a:hover {
+  color: #20B2AA;
+  text-decoration: underline;
+}
+
+/* Footer */
+.qr-footer {
+  text-align: center;
+  padding: 20px 0;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.qr-footer-text {
+  font-size: 12px;
+  color: #64748B;
+}
+
+/* Responsive Design */
+@media (max-width: 360px) {
+  .qr-container {
+    padding: 15px;
+  }
+  
+  .qr-brand-title {
+    font-size: 20px;
+  }
+  
+  .qr-cta-button {
+    padding: 14px 20px;
+    font-size: 15px;
+  }
+  
+  .qr-social-links {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .qr-landing {
+    background: linear-gradient(135deg, #0F1419 0%, #1a2332 100%);
+  }
+}
+
+@media (prefers-contrast: high) {
+  .qr-cta-button {
+    border: 2px solid currentColor;
+  }
+  
+  .qr-social-link {
+    border: 2px solid currentColor;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .qr-cta-button,
+  .qr-social-link {
+    transition: none;
+  }
+} 

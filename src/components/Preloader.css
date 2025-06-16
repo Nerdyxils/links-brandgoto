@@ -1,0 +1,79 @@
+/* Add this to your main CSS file if you prefer external styles */
+
+.logo-preloader-container {
+  --animation-duration: 3s;
+  --orange-color: #f97316; /* Tailwind orange-500 */
+}
+
+.logo-draw-animation {
+  stroke-dasharray: 2000;
+  stroke-dashoffset: 2000;
+  animation: drawAndFillLogo var(--animation-duration) ease-in-out forwards;
+  fill: transparent;
+  stroke: var(--orange-color);
+  stroke-width: 2;
+}
+
+.logo-static-white {
+  fill: none;
+  stroke: #ffffff;
+  stroke-width: 2;
+}
+
+@keyframes drawAndFillLogo {
+  0% {
+    stroke-dashoffset: 2000;
+    fill: transparent;
+  }
+  70% {
+    stroke-dashoffset: 0;
+    fill: transparent;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    fill: var(--orange-color);
+  }
+}
+
+/* Optional: Add a subtle glow effect */
+.logo-draw-animation {
+  filter: drop-shadow(0 0 8px rgba(249, 115, 22, 0.3));
+}
+
+/* Animation timing variants - uncomment the one you prefer */
+
+/* Faster drawing, slower fill */
+
+@keyframes drawAndFillLogo {
+  0% {
+    stroke-dashoffset: 2000;
+    fill: transparent;
+  }
+  50% {
+    stroke-dashoffset: 0;
+    fill: transparent;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    fill: var(--orange-color);
+  }
+}
+
+
+/* Even smoother transition */
+/*
+@keyframes drawAndFillLogo {
+  0% {
+    stroke-dashoffset: 2000;
+    fill: transparent;
+  }
+  80% {
+    stroke-dashoffset: 0;
+    fill: transparent;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    fill: var(--orange-color);
+  }
+}
+*/
