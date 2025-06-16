@@ -1,13 +1,34 @@
 .qr-landing {
   font-family: 'Poppins', sans-serif;
-  background: linear-gradient(135deg, #0F1419 0%, #1a2332 100%);
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+              url('/images/Pattern.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   color: white;
   line-height: 1.6;
   overflow-x: hidden;
   min-height: 100vh;
+  position: relative;
 }
 
+/* Add a subtle texture overlay */
+.qr-landing::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.2) 100%);
+  pointer-events: none;
+}
+
+/* Ensure content stays above the overlay */
 .qr-container {
+  position: relative;
+  z-index: 1;
   max-width: 480px;
   margin: 0 auto;
   padding: 20px;
@@ -181,7 +202,7 @@
 }
 
 .qr-social-link:hover {
-  background: rgba(255,255,255,0.1);
+  background: #FF6B35;
   transform: translateY(-1px);
   color: white;
   text-decoration: none;
