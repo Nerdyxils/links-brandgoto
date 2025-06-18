@@ -1,76 +1,101 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { QRCodeSVG } from 'qrcode.react';
 
-const Links: React.FC = () => {
-  const [isLoading, setIsLoading] = useState(true);
-  const links = [
-    {
-      title: 'Main Website',
-      url: 'https://brandgoto.com/ca',
-      icon: '🌐'
-    },
-    {
-      title: 'Instagram',
-      url: 'https://instagram.com/brandgoto',
-      icon: '📸'
-    },
-    {
-      title: 'LinkedIn',
-      url: 'hhttps://www.linkedin.com/company/brandgoto/',
-      icon: '💼'
-    }
-  ];
-
-  useEffect(() => {
-    // Simulate loading time for preloader
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  if (isLoading) {
-    return (
-      <div className="fixed inset-0 flex items-center justify-center bg-white">
-        <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-blue-500"></div>
-      </div>
-    );
+const links = [
+  {
+    title: 'Main Website',
+    url: 'https://brandgoto.com/ca',
+    icon: '🌐',
+  },
+  {
+    title: 'Instagram',
+    url: 'https://instagram.com/brandgoto',
+    icon: '📸',
+  },
+  {
+    title: 'LinkedIn',
+    url: 'https://www.linkedin.com/company/brandgoto/',
+    icon: '💼',
   }
+];
 
+const smartLaunch = {
+  title: 'SmartLaunch™',
+  url: 'https://smartlaunch.brandgoto.com/',
+  icon: '🚀',
+};
+
+const Links: React.FC = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md mx-auto">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">BrandGoto</h1>
-          <p className="text-lg text-gray-600">Connect with us</p>
-          
-          <div className="mt-8 p-4 bg-white rounded-lg shadow-lg inline-block">
-            <QRCodeSVG
-              value={window.location.href}
-              size={200}
-              level="H"
-              includeMargin={true}
-              className="mx-auto"
-            />
+    <div className="bg-black min-h-screen flex flex-col items-center justify-center overflow-hidden">
+      {/* Hero Section */}
+      <section className="hero-section w-full relative flex flex-col items-center justify-center">
+        <div className="hero-bg-gradient"></div>
+        <div className="hero-bg-radial"></div>
+        {/* Floating shapes */}
+        <div className="hero-floating-1"></div>
+        <div className="hero-floating-2"></div>
+        <div className="hero-floating-3"></div>
+        <div className="hero-content px-4 pt-16 pb-8 w-full">
+          <div className="flex flex-col items-center mb-8">
+            <img src="/images/logo.png" alt="BrandGoto Logo" className="w-20 h-20 mb-4 rounded-full bg-black border border-white/10" />
+            <span className="hero-badge mb-4">Official BrandGoto Links</span>
+            <h1 className="hero-headline gradient-text mb-4">SmartLaunch™</h1>
+            <p className="hero-subtext mb-6">Your bold brand, one smart link. Connect, launch, and grow with BrandGoto.</p>
           </div>
-        </div>
-
-        <div className="space-y-4">
-          {links.map((link, index) => (
+          <div className="hero-cta w-full flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
             <a
-              key={index}
-              href={link.url}
+              href={smartLaunch.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="block w-full p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200 flex items-center space-x-4"
+              className="btn-primary btn-lg flex items-center gap-2 w-full sm:w-auto justify-center"
+              style={{ boxShadow: '0 0 20px rgba(247,95,11,0.15)' }}
             >
-              <span className="text-2xl">{link.icon}</span>
-              <span className="text-lg font-medium text-gray-900">{link.title}</span>
+              <span className="text-2xl">{smartLaunch.icon}</span>
+              <span>{smartLaunch.title}</span>
             </a>
-          ))}
+          </div>
+          <div className="flex flex-col items-center mb-8">
+            <div className="card mb-2 inline-block">
+              <QRCodeSVG
+                value={window.location.href}
+                size={140}
+                level="H"
+                includeMargin={true}
+              />
+            </div>
+            <span className="hero-badge mt-2">Scan to Connect</span>
+          </div>
+          <div className="grid grid-cols-1 gap-4 w-full max-w-3xl mx-auto mb-8">
+            {links.map((link, idx) => (
+              <a
+                key={idx}
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-secondary btn-lg flex items-center gap-3 w-full justify-center"
+              >
+                <span className="text-xl">{link.icon}</span>
+                <span>{link.title}</span>
+              </a>
+            ))}
+          </div>
+          <div className="hero-social-proof gap-4 mt-8">
+            <div className="hero-social-item">
+              <span className="hero-social-dot"></span>
+              <span>Trusted by bold brands</span>
+            </div>
+            <div className="hero-social-item">
+              <span className="hero-social-dot"></span>
+              <span>Secure &amp; fast</span>
+            </div>
+          </div>
         </div>
-      </div>
+      </section>
+      {/* Footer */}
+      <footer className="w-full text-center py-8 text-gray-400 text-sm">
+        &copy; {new Date().getFullYear()} BrandGoto. All rights reserved.
+      </footer>
     </div>
   );
 };

@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import '../assets/links-backup.css';
 import './QRLanding.css';
 
 // Google Analytics gtag type declaration
@@ -52,6 +53,14 @@ const QRLanding: React.FC = () => {
       icon: '🏠',
       variant: 'primary',
       onClick: 'main_website'
+    },
+    {
+      href: 'https://smartlaunch.brandgoto.com/',
+      title: 'SmartLaunch™',
+      description: 'Your bold brand, one smart link. Connect, launch, and grow with BrandGoto.',
+      icon: '🚀',
+      variant: 'secondary',
+      onClick: 'smartlaunch_website',
     },
     {
       href: 'https://calendly.com/silas-brandgoto/30min',
