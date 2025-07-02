@@ -253,7 +253,7 @@ const QRLanding: React.FC = () => {
         <motion.div className="qr-contact-info" variants={itemVariants}>
           <div className="qr-contact-item">
             <i className="fas fa-envelope"></i>
-            <a href="mailto:hello@brandgoto.com">hello@brandgoto.com</a>
+            <a href="mailto:hello@brandgoto.com">hello@brandgoto.com</a> <br />
             <a href="mailto:silas@brandgoto.com">silas@brandgoto.com</a>
           </div>
           <div className="qr-contact-item">
