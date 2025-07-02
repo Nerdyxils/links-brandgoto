@@ -96,7 +96,7 @@ const QRLanding: React.FC = () => {
       onClick: 'twitter'
     },
     {
-      href: '#',
+      href: 'https://www.linkedin.com/company/brandgoto',
       title: 'LinkedIn',
       icon: 'fab fa-linkedin-in',
       onClick: 'linkedin'
@@ -254,10 +254,11 @@ const QRLanding: React.FC = () => {
           <div className="qr-contact-item">
             <i className="fas fa-envelope"></i>
             <a href="mailto:hello@brandgoto.com">hello@brandgoto.com</a>
+            <a href="mailto:silas@brandgoto.com">silas@brandgoto.com</a>
           </div>
           <div className="qr-contact-item">
             <i className="fas fa-phone"></i>
-            <a href="tel:+1234567890">+1 (234) 567-890</a>
+            <a href="tel:+16479377031">+1 (647) 937-7031</a>
           </div>
         </motion.div>
 
