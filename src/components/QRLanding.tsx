@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import '../assets/links-backup.css';
 import './QRLanding.css';
+import logoImage from '../assets/logo.png';
 
 // Google Analytics gtag type declaration
 declare global {
@@ -15,28 +15,86 @@ declare global {
   }
 }
 
-interface CTAButton {
+interface LinkItem {
+  id: string;
   href: string;
   title: string;
-  description: string;
-  icon: string;
+  description?: string;
   variant: 'primary' | 'secondary' | 'tertiary';
-  onClick: string;
   isExternal?: boolean;
-  isCommented?: boolean;
+  isActive?: boolean;
 }
 
 interface SocialLink {
+  id: string;
   href: string;
-  title: string;
   icon: string;
-  onClick: string;
+  title: string;
 }
 
+// Dynamic data configuration
+const linksData: LinkItem[] = [
+  {
+    id: 'main-website',
+    href: 'https://brandgoto.com',
+    title: 'Visit Website',
+    variant: 'primary',
+    isExternal: true,
+    isActive: true
+  },
+  {
+    id: 'smartlaunch',
+    href: 'https://smartlaunch.brandgoto.com/',
+    title: 'SmartLaunch™',
+    description: 'Your bold brand, one smart link',
+    variant: 'secondary',
+    isExternal: true,
+    isActive: true
+  },
+  {
+    id: 'book-consultation',
+    href: 'https://calendly.com/silas-brandgoto/30min',
+    title: 'Book Call',
+    variant: 'tertiary',
+    isExternal: true,
+    isActive: true
+  },
+  {
+    id: 'client-onboarding',
+    href: 'https://docs.google.com/forms/d/e/1FAIpQLSffvSHeZGFyUK5GsubUaQp71m8y7Me-4VZrcj7AmejOzUgleA/viewform?usp=header',
+    title: 'Get Started',
+    variant: 'secondary',
+    isExternal: true,
+    isActive: true
+  }
+];
+
+const socialLinksData: SocialLink[] = [
+  {
+    id: 'instagram',
+    href: 'https://www.instagram.com/brand_goto/',
+    icon: 'fab fa-instagram',
+    title: 'Instagram'
+  },
+  {
+    id: 'twitter',
+    href: 'https://x.com/Brand_goto',
+    icon: 'fab fa-x-twitter',
+    title: 'Twitter'
+  },
+  {
+    id: 'linkedin',
+    href: 'https://www.linkedin.com/company/brandgoto',
+    icon: 'fab fa-linkedin-in',
+    title: 'LinkedIn'
+  }
+];
+
 const QRLanding: React.FC = () => {
+  const [logoError, setLogoError] = useState(false);
+
   // Track QR scan event on page load
   useEffect(() => {
-    // Google Analytics tracking
     if (typeof window !== 'undefined' && window.gtag) {
       window.gtag('event', 'qr_scan', {
         'event_category': 'engagement',
@@ -45,69 +103,15 @@ const QRLanding: React.FC = () => {
     }
   }, []);
 
-  const ctaButtons: CTAButton[] = [
-    {
-      href: 'https://brandgoto.com',
-      title: 'Go to Main Website',
-      description: 'See our portfolio & services',
-      icon: '🏠',
-      variant: 'primary',
-      onClick: 'main_website'
-    },
-    {
-      href: 'https://smartlaunch.brandgoto.com/',
-      title: 'SmartLaunch™',
-      description: 'Your bold brand, one smart link. Connect, launch, and grow with BrandGoto.',
-      icon: '🚀',
-      variant: 'secondary',
-      onClick: 'smartlaunch_website',
-    },
-    {
-      href: 'https://calendly.com/silas-brandgoto/30min',
-      title: 'Book Free Consultation',
-      description: '30-minute strategy session',
-      icon: '📞',
-      variant: 'tertiary',
-      onClick: 'book_consultation',
-      isExternal: true
-    },
-    {
-      href: 'https://docs.google.com/forms/d/e/1FAIpQLSffvSHeZGFyUK5GsubUaQp71m8y7Me-4VZrcj7AmejOzUgleA/viewform?usp=header',
-      title: 'Client Onboarding',
-      description: 'Ready to start? Complete your intake',
-      icon: '📋',
-      variant: 'secondary',
-      onClick: 'client_onboarding',
-      isExternal: true
-    }
-  ];
+  const handleLogoError = () => {
+    console.error('Logo failed to load from assets');
+    setLogoError(true);
+  };
 
-  const socialLinks: SocialLink[] = [
-    {
-      href: 'https://www.instagram.com/brand_goto/',
-      title: 'Instagram',
-      icon: 'fab fa-instagram',
-      onClick: 'instagram'
-    },
-    {
-      href: 'https://x.com/Brand_goto',
-      title: 'Twitter',
-      icon: 'fab fa-x-twitter',
-      onClick: 'twitter'
-    },
-    {
-      href: 'https://www.linkedin.com/company/brandgoto',
-      title: 'LinkedIn',
-      icon: 'fab fa-linkedin-in',
-      onClick: 'linkedin'
-    },
-    {
-      href: '#',
-      title: 'Facebook',
-      icon: 'fab fa-facebook-f',
-      onClick: 'facebook'
-    }
-  ];
+  const handleLogoLoad = () => {
+    console.log('Logo loaded successfully from assets');
+    setLogoError(false);
+  };
 
   const trackClick = (action: string) => {
     if (typeof window !== 'undefined' && window.gtag) {
@@ -117,7 +121,6 @@ const QRLanding: React.FC = () => {
         'value': 1
       });
     }
-    console.log('Tracked click:', action);
   };
 
   const containerVariants = {
@@ -140,42 +143,55 @@ const QRLanding: React.FC = () => {
     }
   };
 
-  const renderCTAButton = (button: CTAButton) => {
+  const LinkButton: React.FC<{ link: LinkItem }> = ({ link }) => {
     const buttonContent = (
-      <>
-        <span className="qr-cta-icon">{button.icon}</span>
-        {button.title}
-        <div className="qr-cta-description">{button.description}</div>
-      </>
+      <motion.div
+        className={`link-button ${link.variant}`}
+        whileHover={{ scale: 1.02 }}
+        whileTap={{ scale: 0.98 }}
+        onClick={() => trackClick(link.id)}
+      >
+        <span className="link-title">{link.title}</span>
+        {link.description && (
+          <span className="link-description">{link.description}</span>
+        )}
+      </motion.div>
     );
 
-    const buttonProps = {
-      className: `qr-cta-button ${button.variant}`,
-      onClick: () => trackClick(button.onClick)
-    };
-
-    if (button.isExternal) {
+    if (link.isExternal) {
       return (
-        <motion.a
-          href={button.href}
+        <a
+          href={link.href}
           target="_blank"
           rel="noopener noreferrer"
-          {...buttonProps}
+          className="link-wrapper"
         >
           {buttonContent}
-        </motion.a>
+        </a>
       );
     }
 
     return (
-      <Link 
-        to={button.href}
-        {...buttonProps}
-      >
+      <Link to={link.href} className="link-wrapper">
         {buttonContent}
       </Link>
     );
   };
+
+  const SocialIcon: React.FC<{ social: SocialLink }> = ({ social }) => (
+    <motion.a
+      href={social.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="social-icon"
+      onClick={() => trackClick(social.id)}
+      whileHover={{ scale: 1.1 }}
+      whileTap={{ scale: 0.95 }}
+      title={social.title}
+    >
+      <i className={social.icon}></i>
+    </motion.a>
+  );
 
   return (
     <div className="qr-landing">
@@ -187,85 +203,58 @@ const QRLanding: React.FC = () => {
       >
         {/* Header */}
         <motion.header className="qr-header" variants={itemVariants}>
-          <img 
-            src="/images/logo.png" 
-            alt="BrandGoto Logo" 
-            className="qr-logo"
-          />
-          <p className="qr-welcome-text">Welcome to</p>
+          {!logoError ? (
+            <img 
+              src={logoImage} 
+              alt="BrandGoto" 
+              className="qr-logo"
+              loading="lazy"
+              onError={handleLogoError}
+              onLoad={handleLogoLoad}
+            />
+          ) : (
+            <div className="qr-logo-fallback">
+              <span>BrandGoto</span>
+            </div>
+          )}
           <h1 className="qr-brand-title">BrandGoto</h1>
-          <p className="qr-tagline">Where Bold Brands Begin</p>
         </motion.header>
 
-        {/* Trust Badges */}
-        <motion.div className="qr-trust-badges" variants={itemVariants}>
-          <div className="qr-trust-badge">
-            <i className="fas fa-shield-alt"></i>
-            Trusted & Secure
-          </div>
-          <div className="qr-trust-badge">
-            <i className="fas fa-users"></i>
-            Served Brands Worldwide
-          </div>
-        </motion.div>
-
-        {/* Main CTAs */}
-        <motion.section className="qr-main-ctas" variants={itemVariants}>
-          <h2 className="qr-section-title">🚀 Get Started Today</h2>
-          
-          {ctaButtons
-            .filter(button => !button.isCommented)
-            .map((button) => (
+        {/* Links */}
+        <motion.section className="qr-links" variants={itemVariants}>
+          {linksData
+            .filter(link => link.isActive)
+            .map((link) => (
             <motion.div
-              key={button.onClick}
+              key={link.id}
               variants={itemVariants}
-              whileHover={{ y: -2 }}
-              whileTap={{ scale: 0.98 }}
             >
-              {renderCTAButton(button)}
+              <LinkButton link={link} />
             </motion.div>
           ))}
         </motion.section>
 
         {/* Social Links */}
         <motion.section className="qr-social-section" variants={itemVariants}>
-          <h3 className="qr-social-title">Connect With Us</h3>
           <div className="qr-social-links">
-            {socialLinks.map((link) => (
-              <motion.a
-                key={link.onClick}
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="qr-social-link"
-                onClick={() => trackClick(link.onClick)}
-                whileHover={{ y: -2 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <i className={link.icon}></i>
-                {link.title}
-              </motion.a>
+            {socialLinksData.map((social) => (
+              <SocialIcon key={social.id} social={social} />
             ))}
           </div>
         </motion.section>
 
-        {/* Contact Info */}
-        <motion.div className="qr-contact-info" variants={itemVariants}>
-          <div className="qr-contact-item">
-            <i className="fas fa-envelope"></i>
-            <a href="mailto:hello@brandgoto.com">hello@brandgoto.com</a> <br />
-            <a href="mailto:silas@brandgoto.com">silas@brandgoto.com</a>
-          </div>
-          <div className="qr-contact-item">
-            <i className="fas fa-phone"></i>
-            <a href="tel:+16479377031">+1 (647) 937-7031</a>
-          </div>
-        </motion.div>
-
-        {/* Footer */}
+        {/* Contact & Footer */}
         <motion.footer className="qr-footer" variants={itemVariants}>
-          <p className="qr-footer-text">
-            © {new Date().getFullYear()} BrandGoto. All rights reserved.
+          <div className="qr-contact">
+            <a href="mailto:hello@brandgoto.com" className="contact-link">
+              <i className="fas fa-envelope"></i>
+            </a>
+            <a href="tel:+16479377031" className="contact-link">
+              <i className="fas fa-phone"></i>
+            </a>
+          </div>
+          <p className="qr-copyright">
+            © {new Date().getFullYear()} BrandGoto
           </p>
         </motion.footer>
       </motion.div>
